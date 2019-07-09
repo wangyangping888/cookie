@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script type="text/javascript">
+			
+			/**
+			 * 
+			 * 键值对  k:v  {name:'xiaoming',age:12}
+			 * 
+			 * */
+			function addCookie(key,value,time,path){
+				var key = escape(key);
+				var value = escape(value);
+				var expires = new Date();
+				expires.setTime(expires.getTime()+time*1000);
+				path = path==""?"":";path="+path;
+				var _expires = (typeof time) == 'string'?"":";expires="+ expires.toUTCString();
+				
+				document.cookie =  key+"="+value+_expires+path;
+//				console.log(key+"="+value+_expires+path);
+				
+			}
+			
+			
+			function getCookie(key){
+				var key = escape(key);
+				var cookies = document.cookie;
+				var start = cookies.indexOf(key+"=");
+				
+				if(start==-1){
+					return "";
+				}else{
+					start += (key+"=").length;
+				}
+				
+				var end = cookies.indexOf(";",start);
+				
+				if(end==-1){
+					end = cookies.length;
+				}
+				return cookies.substring(start,end);
+			}
+			
+			function deleteCookie(key){
+				addCookie(key,'',0,'');
+			}
+			
+			addCookie('user_id','1',1000);
+			addCookie('user_name','xiaoming',1000);
+			addCookie('user_sex','boy',1000);
+			addCookie('user_age','12',10000);
+			deleteCookie('user_id')
+			console.log(getCookie('user_id'));
+			console.log(getCookie('user_age'));
+			
+			var str = "user_id=1; user_name=xiaoming; user_sex=boy; user_age=12";
+			
+			var key = "user_name";
+			var start = str.indexOf(key);
+			if(start>-1){
+				start = start + (key+"=").length;
+			}
+			
+			var end = str.indexOf(";",start);
+			
+			if(end==-1){
+				end = str.length;
+			}
+			
+			console.log(str.substring(start,end));
+			
+			
+		</script>
+		
+	</body>
+</html>

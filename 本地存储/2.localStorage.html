@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			// 存
+			localStorage.setItem('user_id','1234567890');
+			localStorage.setItem('user_name','xiaoming');
+			localStorage.setItem('user_age','12');
+			localStorage.setItem('user_sex','boy');
+			
+			// 取
+			console.log(localStorage.getItem("user_id"));
+			
+			// 删
+			localStorage.removeItem('user_id')
+			
+			// 清
+//			localStorage.clear();
+			
+			console.log(localStorage.getItem("user_name"));
+			
+			// 遍历
+			var all = localStorage;
+			for (var i=0;i<all.length;i++) {
+				var key = all.key(i);
+				var value = all.getItem(key);
+				console.log(key+'-'+value)
+			}
+			
+		
+			
+		</script>
+		
+		
+		
+	</body>
+</html>

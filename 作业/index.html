@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>乐展就要狂 百分百中大奖</title>
+    <link rel="stylesheet" href="css/campaign.css">
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/awardRotate.js"></script>  <!-- jQuery旋转插件 -->
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family:"微软雅黑";
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .c_pic {
+            width:100%;
+            position:absolute;
+            height: 60%;
+            top: 38.3%;
+            /* height: 100%; */
+        }
+
+        .c_pic2 {
+            width:100%;
+            position:absolute;
+            height: 40%;
+            top: 38.5%;
+            /* height: 100%; */
+        }
+
+        .mask {
+            width: 100%;
+            height:100%;
+            position: absolute;
+            z-index: 20;
+            background-color: black;
+            opacity: 0.8
+        }
+        .mask-img {
+            margin-top:30%;
+            position: absolute;
+            z-index: 20;
+        }
+
+        form div input{
+            width: 80%;
+            height: 100%;
+            margin-left: 20%;
+            font-size: 16px;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .ui-loader{
+            display: none;
+        }
+
+        .code {
+            border-style: solid;
+            border-width: 1px;
+            border-color: #fe6500;
+            border-radius: 15px;
+            padding: 1.2rem 1rem 0.8rem 1rem;
+            color: #fe6500;
+            height: 11%;
+            width: 8%;
+            text-align:center;
+            font-size: 16px;
+            position:absolute;
+            z-index: 10;
+            top: 53%;
+            left: 43%;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var is_submit = false;
+            var degree = [0, 33, 93, 153, 213, 273, 333];
+            var param = {};
+            var timer = null;
+            //获取短信验证码
+            $(".code").click(function() {//tap 事件在用户轻击一个元素时触发//
+    
+                var num = 60;
+                if(!/^(1)\d{10}$/i.test($("#id_input_phone").val())) {
+                    $("#id_input_phone").val("");
+                    alert("错误的手机号")
+                    return false;
+                }
+                
+                var param = {};
+                var id_input_phone = $("#id_input_phone").val();
+                param.phone = id_input_phone;
+                
+                clearInterval(timer);
+                
+                timer = setInterval(function() {
+                    $("#code").html("已发送" + num + "s");
+                    $("#code").css("pointer-events", "none");
+                    num--;
+                    if(num <= 0) {
+                        clearInterval(timer);
+                        num = 60;
+                        $("#code").html("重新获取");
+                        $("#code").css("pointer-events", "");
+                    }
+                    
+                }, 1000)
+           
+                return false;
+            });
+            //提交
+            $(".submit-info").click(function() {//tap 事件在用户轻击一个元素时触发
+                
+                if(!/^(1)\d{10}$/i.test($("#id_input_phone").val())) {
+                    $("#id_input_phone").val("");
+                    // $("#id_input_phone").attr("placeholder", "错误手机号");
+                    alert("错误的手机号")
+                    return false;
+                }
+                if($("#id_input_code").val() == "") {
+                    $("#id_input_code").val("");
+                    alert("错误的验证码")
+                    return false;
+                }
+                
+                var param = {};
+                var id_input_phone = $("#id_input_phone").val();
+                var id_input_code = $("#id_input_code").val();
+                param.phone = id_input_phone;
+                param.code = id_input_code;
+             
+                is_submit = true;
+                           
+                return false;
+            });
+
+             //抽奖
+             $("#id_div3").click(function() {//tap 事件在用户轻击一个元素时触发
+                if (!is_submit) {
+                    alert("请先提交信息");
+                    return false;
+                }
+                if(!/^(1)\d{10}$/i.test($("#id_input_phone").val())) {
+                    $("#id_input_phone").val("");
+                    // $("#id_input_phone").attr("placeholder", "错误手机号");
+                    alert("错误的手机号")
+                    return false;
+                }
+                var param = {};
+                var id_input_phone = $("#id_input_phone").val();
+                param.phone = id_input_phone;
+                param.name = "-";
+                
+                $("#code").html("获取验证码");
+                $("#code").css("pointer-events", "");
+                
+                var angles=degree[2];//2];//e.datas.result
+                switch(2)
+                {
+                    case 1:
+                        $(".mask-img").attr("src","img/1.png")
+                    break;
+                    case 2:
+                        $(".mask-img").attr("src","img/6.png")
+                    break;
+                    case 3:
+                        $(".mask-img").attr("src","img/5.png")
+                    break;
+                    case 4:
+                        $(".mask-img").attr("src","img/4.png")
+                    break;
+                    case 5:
+                        $(".mask-img").attr("src","img/3.png")
+                    break;
+                    case 6:
+                        $(".mask-img").attr("src","img/2.png")
+                    break;
+                }
+                $('#rotate').stopRotate();
+                angles = Math.round(Math.random()*56) + angles;
+                $('#rotate').rotate({
+                    angle:0,
+                    animateTo:angles+1800,
+                    duration:8000,
+                    callback:function (){
+                        $("#id_input_phone").val("");
+                        $("#id_input_phone").attr("placeholder", "请输入手机号码");
+                        $("#id_input_code").val("");
+                        $("#id_input_code").attr("placeholder", "请输入验证码");
+                        clearInterval(timer);
+                        num = 60;
+                        $("#code").html("获取验证码");
+                        $("#code").css("pointer-events", "");
+                        $(".mask-bg").show();
+                    }
+                })
+                return false;
+            });
+            $(".mask-img").click(function() {//tap 事件在用户轻击一个元素时触发
+                $(".mask-bg").hide();
+            })
+
+            $("#mask").click(function() {//tap 事件在用户轻击一个元素时触发
+                $(".mask-bg").hide();
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="yc" style="width: 100%;height:15%;position: absolute;z-index: 9;margin-top: 36%">
+    <div style="width: 96%;height:100%;margin: auto;">
+        <form style="width: 100%;height:100%;display: flex;">
+            <div style="width:62%;height:100%">
+                <div style="height:40%">
+                    <input type="text" class="form-text" id="id_input_phone" placeholder="请输入手机号码" style="text-indent:1em;">
+                </div>
+                <div style="height:40%;margin-top:15px">
+                    <div class="code" id="code">获取验证码</div>
+                    <input type="text" class="form-text" id="id_input_code" placeholder="请输入验证码" style="text-indent:1em">
+                </div>
+            </div>
+            <div class="submit-info" style="margin-left:20px;width:38%">
+                <img style="height:86%" src="img/sub.png">
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<div data-role="page">
+    <div class="mask-bg" style="display:none">
+        <div class="mask" id="mask"></div>
+        <img class="mask-img" style="width:100%" src="img/1.png">
+    </div>
+    <div data-role="main" class="ui-content">
+        <div>
+            <img style="width:100%" src="img/bg.png">
+        </div>
+        <div class="c_pic" id="id_div2">
+            <img id="rotate" style="width: 65%;position: absolute;left: 17.5%;" src="img/bg2.png">
+        </div>
+         <div class="c_pic2" id="id_div3">
+            <img style="width: 60%;position: absolute;left: 20%;" src="img/sub2.png">
+        </div>
+    </div>
+
+    <div id="id_footer" data-role="footer">
+    </div>
+</div>
+</body>
+</html>

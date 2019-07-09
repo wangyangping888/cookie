@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+
+html, body {
+ height: 100%;
+ width: 100%;
+}
+.black_overlay {
+ display: none;
+ position: absolute;
+ top: 0%;
+ left: 0%;
+ width: 100%;
+ height: 100%;
+ background-color:#666666 ;
+ color:#3366cc;
+ z-index:1001;
+ opacity: 0.8;
+ finishOpacity:60;
+ filter: alpha(opacity=50);
+}
+.close {
+ float:right;
+ clear:both;
+ width:100%;
+ text-align:right;
+ margin:0 0 6px 0
+}
+.close a {
+ color:#333;
+ text-decoration:none;
+ font-size:14px;
+ font-weight:700
+}
+.con {
+ text-indent:1.5pc;
+ line-height:21px
+}

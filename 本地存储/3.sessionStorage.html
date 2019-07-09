@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// 会话级存储
+//			localStorage.setItem('history','手机|平板|笔记本');
+//			sessionStorage.setItem('history','手机|平板|笔记本');
+			
+			// 存 取 删  清
+			sessionStorage.setItem('user_id',123);
+			sessionStorage.removeItem('user_id');
+			sessionStorage.clear();
+			console.log(sessionStorage.getItem('user_id'));
+			
+		</script>
+	</body>
+</html>
